@@ -21,7 +21,7 @@ struct Triplets {
 #define VERBOSE true
 #define RECORD_TRIPLETS true
 
-const int test = F_N2logN;
+const int test = F_N2;
 long long unsigned int busyCount;
 const long long int maxValue = 1000;
 const long long int minValue = -1000;
@@ -169,6 +169,7 @@ void N2(int N, int *list, int bucketList[], Triplets triplets[])
 {
     /* perform new indexing where each value is the actual index number, therefore when we have two numbers from the for loop, we check the index for the 3rd to see
     if it exists*/
+    printList(N, list);
     long long int ctr = 0;
     for (int i = 0; i < N; i++) {
         for (int j = i; j < N - 1; j++) {
@@ -182,12 +183,13 @@ void N2(int N, int *list, int bucketList[], Triplets triplets[])
                         triplets[ctr].index3 = -(list[i] + list[j]) + offset;
                     }
                     if (VERBOSE)
-                        printf("Index: (%3d, %3d, %3d)     Triplets: (%3d, %3d, %3d)\n", triplets[ctr].index1, triplets[ctr].index2, triplets[ctr].index3, list[triplets[ctr].index1], list[triplets[ctr].index2], -(list[i] + list[j]));
+                        printf("Triplets: (%3d, %3d, %3d)\n",list[triplets[ctr].index1], list[triplets[ctr].index2], -(list[i] + list[j]));
                     ++ctr;
                 }
             }
         }
     }
+    puts("");
 }
 
 
@@ -335,7 +337,6 @@ int main(int argc, char** argv) {
     free(listA);
     free(indexes);
     free(triplets);
-    free(buckets);
 }
 
 //////////////////////////////////
